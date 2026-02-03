@@ -1,0 +1,23 @@
+module: src.agents.HTTPAgent
+parameters:
+    name: "your_agent_name"
+    max_history_segments: 3000 # set the max history segments, if the history is too long, interaction will be terminated
+    overflow_policy: "skip"
+    url: "http://your_vllm_server_url/v1/completions"
+    headers:
+        Content-Type: "application/json"
+    body:
+        model: "your_model_name"
+        temperature: 0.0
+        top_p: 1.0
+        max_tokens: 512
+        stream: false
+    prompter:
+        name: prompt_string
+        args:
+            prefix: ""
+            suffix: "AGENT:"
+            user_format: "USER: {content}\n\n"
+            agent_format: "AGENT: {content}\n\n"
+            prompt_key: "prompt"
+    return_format: "{response[choices][0][text]}"

@@ -1,0 +1,167 @@
+extra:
+  name: dev
+default:
+  agent: configs/agents/vllm_agent_example.yaml
+  task:
+    parameters:
+      workers: 5
+assignments:
+# OS-Interaction
+  - task:
+      from: configs/tasks/os_interaction/std.yaml
+      parameters:
+        disturb_type: 0
+        name: OS-Interaction
+  - task:
+      from: configs/tasks/os_interaction/std.yaml
+      parameters:
+        disturb_type: 1
+        name: OS-Interaction_1
+  - task:
+      from: configs/tasks/os_interaction/std.yaml
+      parameters:
+        disturb_type: 2
+        name: OS-Interaction_2
+
+# DBBench
+  - task:
+      from: configs/tasks/dbbench/std.yaml
+      parameters:
+        disturb_type: 0
+        name: DBBench
+  - task:
+      from: configs/tasks/dbbench/std.yaml
+      parameters:
+        disturb_type: 1
+        name: DBBench_1
+  - task:
+      from: configs/tasks/dbbench/std.yaml
+      parameters:
+        disturb_type: 2
+        name: DBBench_2
+
+# ALFWorld
+  - task: 
+      from: configs/tasks/alfworld/dev.yaml
+      parameters:
+        name: ALFWorld-dev
+        disturb_type: 0
+  - task: 
+      from: configs/tasks/alfworld/dev.yaml
+      parameters:
+        name: ALFWorld-dev_1
+        disturb_type: 1
+  - task: 
+      from: configs/tasks/alfworld/dev.yaml
+      parameters:
+        name: ALFWorld-dev_2
+        disturb_type: 2
+
+# WebShop
+  - task: 
+      from: configs/tasks/webshop/dev.yaml
+      parameters:
+        name: WebShop-dev
+        disturb_type: 0
+  - task: 
+      from: configs/tasks/webshop/dev.yaml
+      parameters:
+        name: WebShop-dev_1
+        disturb_type: 1
+  - task:
+      from: configs/tasks/webshop/dev.yaml
+      parameters:
+        name: WebShop-dev_2
+        disturb_type: 2
+
+
+# KnowledgeGraph
+  - task:
+      from: configs/tasks/knowledgegraph/dev.yaml
+      parameters:
+        name: KnowledgeGraph-dev
+        disturb_type: 0
+  - task:
+      from: configs/tasks/knowledgegraph/dev.yaml
+      parameters:
+        name: KnowledgeGraph-dev_1
+        disturb_type: 1
+  - task:
+      from: configs/tasks/knowledgegraph/dev.yaml
+      parameters:
+        name: KnowledgeGraph-dev_2
+        disturb_type: 2
+
+# Mind2Web
+  - task: 
+      from: configs/tasks/mind2web/dev.yaml
+      parameters:
+        name: Mind2Web-dev
+        disturb_type: 0
+  - task: 
+      from: configs/tasks/mind2web/dev.yaml
+      parameters:
+        name: Mind2Web-dev_1
+        disturb_type: 1
+  - task: 
+      from: configs/tasks/mind2web/dev.yaml
+      parameters:
+        name: Mind2Web-dev_2
+        disturb_type: 2
+
+
+# IR calculation
+# If you want to calculate the IR, you can use the following tasks.
+# NOTE: To eliminate positional bias, we use 100 and 101 to represent the cases where the original name comes first and the synonym comes second, and vice versa.
+# The final metric can only be calculated after both tasks are completed.
+# You need to add the "mp_alpha" metrics from both results(100 and 101), divide by 2, and then exponentiate the average to get the final IR metric.
+  # - task:
+  #     from: configs/tasks/os_interaction/std.yaml
+  #     parameters:
+  #       disturb_type: 100
+  #       name: OS-Interaction_100
+  # - task:
+  #     from: configs/tasks/os_interaction/std.yaml
+  #     parameters:
+  #       disturb_type: 101
+  #       name: OS-Interaction_101
+  # - task:
+  #     from: configs/tasks/dbbench/std.yaml
+  #     parameters:
+  #       disturb_type: 100
+  #       name: DBBench_100
+  # - task:
+  #     from: configs/tasks/dbbench/std.yaml
+  #     parameters:
+  #       disturb_type: 101
+  #       name: DBBench_101
+  # - task:
+  #     from: configs/tasks/alfworld/dev.yaml
+  #     parameters:
+  #       name: ALFWorld-dev_100
+  #       disturb_type: 100
+  # - task:
+  #     from: configs/tasks/alfworld/dev.yaml
+  #     parameters:
+  #       name: ALFWorld-dev_101
+  #       disturb_type: 101
+  # - task:
+  #     from: configs/tasks/webshop/dev.yaml
+  #     parameters:
+  #       name: WebShop-dev_100
+  #       disturb_type: 100
+  # - task:
+  #     from: configs/tasks/webshop/dev.yaml
+  #     parameters:
+  #       name: WebShop-dev_101
+  #       disturb_type: 101
+  # - task:
+  #     from: configs/tasks/knowledgegraph/dev.yaml
+  #     parameters:
+  #       name: KnowledgeGraph-dev_100
+  #       disturb_type: 100
+  # - task:
+  #     from: configs/tasks/knowledgegraph/dev.yaml
+  #     parameters:
+  #       name: KnowledgeGraph-dev_101
+  #       disturb_type: 101

@@ -1,0 +1,6 @@
+module: "src.tasks.KnowledgeGraph"
+parameters:
+    name: "KnowledgeGraph-dev"
+    round: 15
+    data_file: "data/knowledgegraph/dev.json"
+    sparql_url: "Put your own sparql url here"

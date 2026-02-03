@@ -1,0 +1,8 @@
+module: "src.agents.api_agents.OpenAIChatCompletion"
+parameters:
+    name: "gpt-5-mini"
+    api_args:
+        model: "gpt-5-mini"
+        # key: <assign your openai key here>
+        # base: <assign your openai base here>
+        timeout: 120
